@@ -1,0 +1,81 @@
+#logindiv{
+	text-align: center;
+}
+
+#dashboard{
+	display: none;
+}
+
+#loginform {
+	width: 300px;
+	text-align: left;
+}
+
+#logo {
+	margin-bottom: 25px;	
+}
+
+.form-inline{
+	text-align:left;
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#loginbutton{
+	width: 70px;
+	margin-left: -10px;
+}
+
+.controls input{
+	width: 290px;
+}
+
+select{
+	background-color:#FFFFFF;
+}
+
+/* Footer
+-------------------------------------------------- */
+.footer {
+  margin-top: 300px;
+  padding: 35px 0 36px;
+  border-top: 1px solid #e5e5e5;
+}
+.footer p {
+  margin-bottom: 0;
+  color: #555;
+}
+
+#walkimg{
+	float: left;
+	margin-right: 50px;
+	width: 50%;
+}
+
+#pdflink img{
+	display: none;
+	width: 100px;
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+.spinnerdiv {
+	width: 20px;
+}
+
+#targetuser{
+	width: 150px;
+}
+
+#targetgroup p{
+	width: 150px;
+}
+
+#downloadbutton{
+	width: 150px;
+}
+
+#mobility-widgets{
+	margin-top: 60px;
+}
