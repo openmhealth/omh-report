@@ -1,4 +1,3 @@
-//ohmage("/mobility/dates/read", { username : "ohmage.josh" })
 //ohmage("/user/read")
 
 $(document).ready(function() {
@@ -10,6 +9,9 @@ $(document).ready(function() {
 		var data = data ? data : {};		
 		var session = jQuery.parseJSON($.cookie("ohmage"))
 		var serverurl = session ? session.serverurl : $("#serverurl").val();
+		
+		//This is only needed for safari. Chrome and FF will use the cookie:
+		if(session && session.token) data.auth_token = session.token;
 		
 		//default parameter
 		data.client = "omh-reporting"
@@ -63,6 +65,8 @@ $(document).ready(function() {
 	function processError(errors){
 		if(response.errors[0].code && response.errors[0].code == "0200"){
 			logout();
+			if(response.errors[0].text == "The token is unknown.") return;
+			alert(response.errors[0].text)
 		} else {
 			alert(response.errors[0].text)
 		}
