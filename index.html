@@ -9,8 +9,7 @@
 <meta name="author" content="">
 
 <!-- Le styles -->
-<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="omh-report.css" rel="stylesheet">
+
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -21,8 +20,17 @@
 <script src="jquery/jquery-1.7.2.min.js"></script>
 <script src="jquery/jquery.cookie.js"></script>
 <script src="jquery/xdr.js"></script>
+
+<script src="dc/crossfilter.js"></script>
+<script src="dc/d3.v2.js"></script>
+<script src="dc/dc.js"></script>
+<link href="dc/dc.css" rel="stylesheet">
+
+
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="omh-report.js"></script>
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="omh-report.css" rel="stylesheet">
 
 </head>
 
@@ -55,9 +63,9 @@
 					<div class="control-group span3">
 						<div class="controls">
 							<select id="serverurl" name="serverurl">
-								<option>https://pilots.omh.io/app</option>
-								<option>https://dev.mobilizingcs.org/app</option>
-								<option>https://dev.andwellness.org/app</option>
+								<option>https://dev.ohmage.org/app</option>
+								<option>https://test.ohmage.org/app</option>
+								<option>https://pilots.omh.io/app</option>								
 							</select>
 						</div>
 					</div>
@@ -155,11 +163,11 @@
 				</div>
 
 				<div class="span6"></div>
-
-
-
-
-
+				
+			</div>
+			<div class="row">
+				<div id="date-chart" class="chart">
+				</div>
 			</div>
 			<!--/row-->
 		</section>

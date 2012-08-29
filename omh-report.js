@@ -20,6 +20,7 @@ $(document).ready(function() {
 			type: "POST",
 			url : serverurl + path,
 			data: data,
+			dataType: "text",
 			xhrFields: {
 				withCredentials: true
 			}
@@ -28,7 +29,7 @@ $(document).ready(function() {
 				alert("Undefined error.")
 				return false;
 			}
-			response = jQuery.parseJSON(rsptxt);
+			var response = jQuery.parseJSON(rsptxt);
 			if(response.result == "success"){
 				response.serverurl = serverurl;
 				if(datafun) datafun(response)
@@ -53,7 +54,7 @@ $(document).ready(function() {
 			data: data
 		}).done(function(rsptxt){
 			if(datafun) {
-				response = jQuery.parseJSON(rsptxt);
+				var response = jQuery.parseJSON(rsptxt);
 				datafun(response);
 			}
 		}).error(function(xhr){
@@ -63,12 +64,12 @@ $(document).ready(function() {
 	}
 	
 	function processError(errors){
-		if(response.errors[0].code && response.errors[0].code == "0200"){
+		if(errors[0].code && errors[0].code == "0200"){
 			logout();
-			if(response.errors[0].text == "The token is unknown.") return;
-			alert(response.errors[0].text)
+			if(errors[0].text == "The token is unknown.") return;
+			alert(errors[0].text)
 		} else {
-			alert(response.errors[0].text)
+			alert(errors[0].text)
 		}
 	}
 	
@@ -199,6 +200,10 @@ $(document).ready(function() {
 	$("#signout").click(function(){
 		logout();
 	})
+	
+	dc.barChart("#date-chart")
+	.width(1000)
+	.height(250)
 	
 	
 	//Onload Initiator	

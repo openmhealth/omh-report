@@ -1,0 +1,162 @@
+.chart {
+    float: left;
+}
+
+.chart rect.bar {
+    stroke: none;
+    fill: steelblue;
+}
+
+.chart rect.stack1 {
+    stroke: none;
+    fill: red;
+}
+
+.chart rect.stack2 {
+    stroke: none;
+    fill: green;
+}
+
+.chart rect.deselected {
+    stroke: none;
+    fill: #ccc;
+}
+
+.chart .sub .bar {
+    stroke: none;
+    fill: #ccc;
+}
+
+.clear {
+    clear: both;
+}
+
+.pie-slice {
+    fill: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.pie-slice :hover{
+    fill-opacity: .8;
+}
+
+.pie-slice path.selected {
+    stroke-width: 3;
+    stroke: #ccc;
+    fill-opacity: 1;
+}
+
+.pie-slice path.deselected {
+    strok: none;
+    fill-opacity: .5;
+    fill: #ccc;
+}
+
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font: 10px sans-serif;
+}
+
+.grid-line line {
+    fill: none;
+    stroke: #ccc;
+    opacity: .5;
+}
+
+.brush rect.background {
+    z-index: -999;
+}
+
+.brush rect.extent {
+    fill: steelblue;
+    fill-opacity: .125;
+}
+
+.brush .resize path {
+    fill: #eee;
+    stroke: #666;
+}
+
+.chart path.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+
+.chart g.stack1 path.line {
+    stroke: green;
+}
+
+.chart g.stack2 path.line {
+    stroke: red;
+}
+
+.chart path.area {
+    fill: steelblue;
+    fill-opacity: .3;
+    stroke: none;
+}
+
+.chart g.stack1 path.area {
+    fill: green;
+}
+
+.chart g.stack2 path.area {
+    fill: red;
+}
+
+.node {
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+.node :hover{
+    fill-opacity: .8;
+}
+
+.node .selected {
+    stroke-width: 3;
+    stroke: #ccc;
+    fill-opacity: 1;
+}
+
+.node circle.deselected {
+    strok: none;
+    fill-opacity: .5;
+    fill: #ccc;
+}
+
+.bubble {
+    stroke: none;
+    fill-opacity: 0.6;
+}
+
+.chart g.state{
+    cursor: pointer;
+}
+
+.chart g.state :hover{
+    fill-opacity: .8;
+}
+
+.chart g.state path {
+    stroke: white;
+}
+
+.chart g.state path.selected {
+}
+
+.chart g.state path.deselected {
+    fill: grey;
+}
+
+.chart g.county path {
+    stroke: white;
+    fill: none;
+}
