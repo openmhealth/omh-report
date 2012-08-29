@@ -201,11 +201,8 @@ $(document).ready(function() {
 		logout();
 	})
 	
-	dc.barChart("#date-chart")
-	.width(1000)
-	.height(250)
-	
-	
+	//dc.barChart("#date-chart").width(1000).height(250)
+		
 	//Onload Initiator	
 	if($.cookie("ohmage")){
 		postLogin()
