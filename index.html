@@ -21,9 +21,9 @@
 <script src="jquery/jquery.cookie.js"></script>
 <script src="jquery/xdr.js"></script>
 
-<!-- <script src="dc/crossfilter.js"></script> -->
-<!-- <script src="dc/d3.v2.js"></script> -->
-<!-- <script src="dc/dc.js"></script> -->
+<script src="dc/crossfilter.js"></script>
+<script src="dc/d3.v2.js"></script>
+<script src="dc/dc.js"></script>
 <link href="dc/dc.css" rel="stylesheet">
 
 
@@ -145,6 +145,14 @@
 								</p>
 							</div>
 
+							<div>
+								<button id="loaddatabutton" class="btn disabled"
+									disabled="disabled">
+									<i class="icon-user icon-white"></i> Load Data
+								</button>
+								<img class="spinnerdiv" src="images/spinner.gif" alt="spinner" />
+							</div>
+
 
 							<div>
 								<button id="downloadbutton" class="btn disabled"
@@ -162,12 +170,23 @@
 
 				</div>
 
-				<div class="span6"></div>
+
 				
 			</div>
+			
+			<br />
+			
 			<div class="row">
-				<div id="date-chart" class="chart">
-				</div>
+				
+				<div class="span12">
+				
+					<div id="date-chart" class="chart"></div>
+					<div id="mode-chart-container">
+						<div id="move-chart" class="chart"></div>
+					</div>
+	
+				</div>			
+							
 			</div>
 			<!--/row-->
 		</section>

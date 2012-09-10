@@ -42,6 +42,7 @@ select{
   padding: 35px 0 36px;
   border-top: 1px solid #e5e5e5;
 }
+
 .footer p {
   margin-bottom: 0;
   color: #555;
@@ -72,8 +73,9 @@ select{
 	width: 150px;
 }
 
-#downloadbutton{
+#downloadbutton, #loaddatabutton{
 	width: 150px;
+	margin-bottom: 5px;
 }
 
 #mobility-widgets{

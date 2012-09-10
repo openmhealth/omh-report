@@ -4,17 +4,17 @@
 
 .chart rect.bar {
     stroke: none;
-    fill: steelblue;
+    fill: #80b1d3;
 }
 
 .chart rect.stack1 {
     stroke: none;
-    fill: red;
+    fill: #fb8072;
 }
 
 .chart rect.stack2 {
     stroke: none;
-    fill: green;
+    fill: #b3de69;
 }
 
 .chart rect.deselected {
