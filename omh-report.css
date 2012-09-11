@@ -55,14 +55,15 @@ select{
 }
 
 #pdflink img{
+	width: 150px;
 	display: none;
-	width: 100px;
 	margin-top: 20px;
-	margin-left: 30px;
+	margin-left: 20px;
 }
 
 .spinnerdiv {
 	width: 20px;
+	margin-top: -10px;
 }
 
 #targetuser{
@@ -73,11 +74,33 @@ select{
 	width: 150px;
 }
 
-#downloadbutton, #loaddatabutton{
+.databutton{
 	width: 150px;
+	margin-left: 10px;
 	margin-bottom: 5px;
 }
 
 #mobility-widgets{
 	margin-top: 60px;
+}
+
+
+#date-chart rect.bar {
+    fill: #80b1d3;
+}
+
+#date-chart rect.stack1 {
+    fill: #fb8072;
+}
+
+#date-chart rect.stack2 {
+    fill: #b3de69;
+}
+
+#pdflinkcontainer{
+	height: 200px;
+}
+
+#movechartcontainer{
+	height: 200px;
 }

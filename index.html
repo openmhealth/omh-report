@@ -39,7 +39,7 @@
 		<form id="loginform" class="well form-inline">
 
 			<img id="logo"
-				src="http://openmhealth.org/static/identity/openmhealth_lockup512.png"
+				src="images/omh-logo.png"
 				alt="logo" />
 
 
@@ -65,7 +65,7 @@
 							<select id="serverurl" name="serverurl">
 								<option>https://test.ohmage.org/app</option>
 								<option>https://dev.ohmage.org/app</option>
-								<option>https://pilots.omh.io/app</option>								
+								<option>https://pilots.omh.io/app</option>
 							</select>
 						</div>
 					</div>
@@ -124,10 +124,9 @@
 
 				<div class="span6">
 
-					<div class="alert">
-						<button class="close" data-dismiss="alert">×</button>
-						<strong>Note!</strong> Generating the report can take up to one or
-						two minutes! Please be patient :-)
+					<div class="alert alert-info">
+						<!-- 						<button class="close" data-dismiss="alert alert-info">×</button> -->
+						<strong>Welcome!</strong> Start by selecting a participant.
 					</div>
 
 					<img id="walkimg" src="images/walking.jpg" alt="walking" />
@@ -136,57 +135,92 @@
 						<fieldset>
 							<div id="targetgroup" class="control-group">
 								<div class="controls">
-									<select id="targetuser" class="input-medium">
+									<select id="targetuser" class="input-medium"></select>
+									<br />
+									<select id="dayselector" class="input-medium">
+										<option value=7> 1 week </option>
+										<option selected="selected" value=14> 2 weeks </option>
+										<option value=21> 3 weeks </option>
+										<option value=28> 4 weeks </option>									
 									</select>
+									 <img class="spinnerdiv" src="images/spinner.gif" alt="spinner" />
 								</div>
 								<p>
 									This user has collected <span id="daycounter">0</span> days of
-									mobility data in the past 14 days.
+									mobility data in the past <span id="n">n</span> days.
 								</p>
 							</div>
 
-							<div>
-								<button id="loaddatabutton" class="btn disabled"
-									disabled="disabled">
-									<i class="icon-user icon-white"></i> Load Data
-								</button>
-								<img class="spinnerdiv" src="images/spinner.gif" alt="spinner" />
-							</div>
 
 
-							<div>
-								<button id="downloadbutton" class="btn disabled"
-									disabled="disabled">
-									<i class="icon-user icon-white"></i> Generate Report
-								</button>
-								<img class="spinnerdiv" src="images/spinner.gif" alt="spinner" />
-							</div>
 
-							<a href="" target="_blank" id="pdflink"> <img
-								src="images/pdf-icon.png" alt="pdf" />
-							</a>
+
 						</fieldset>
 					</form>
+
+
 
 				</div>
 
 
-				
-			</div>
-			
-			<br />
-			
-			<div class="row">
-				
-				<div class="span12">
-				
-					<div id="date-chart" class="chart"></div>
-					<div id="mode-chart-container">
-						<div id="move-chart" class="chart"></div>
+				<div class="span6">
+					<div class="alert">
+						<button class="close" data-dismiss="alert">×</button>
+						<strong>Note!</strong> Generating the report can take up to one or
+						two minutes! Please be patient :-)
 					</div>
-	
-				</div>			
-							
+				</div>
+
+				<div class="span3">
+					<div class="well">
+						<h3>Mobility Viz</h3>	
+						<div id="movechartcontainer">
+							<div id="move-chart" class="chart"></div>
+						</div>
+						<div>
+							<button id="loaddatabutton" class="databutton btn disabled"
+								disabled="disabled">
+								<i class="icon-user icon-white"></i> Load Mobilty Data
+							</button>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="span3">
+					<div id="reportcontainer" class="well">
+
+						<h3>PDF Report</h3>
+
+						<div id="pdflinkcontainer">
+							<a href="" target="_blank" id="pdflink"> <img
+								src="images/pdf-icon.png" alt="pdf" />
+							</a>
+						</div>
+
+						<div>
+							<button id="downloadbutton" class="databutton btn disabled"
+								disabled="disabled">
+								<i class="icon-user icon-white"></i> Generate Report
+							</button>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+
+			<br />
+
+			<div class="row">
+
+				<div class="span12">
+
+					<div id="date-chart" class="chart"></div>
+
+				</div>
+
 			</div>
 			<!--/row-->
 		</section>

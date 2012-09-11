@@ -100,7 +100,7 @@ $(document).ready(function() {
 		$("#logindiv").show();
 		$("#targetgroup").removeClass("success");
 		$("#targetgroup").removeClass("error");
-		$("#downloadbutton").addClass("disabled").attr("disabled", "disabled")
+		$(".databutton").addClass("disabled").attr("disabled", "disabled")
 		$("#pdflink").attr("href", "");
 		$("#pdflink img").hide();
 		$(".brand").text("")
@@ -138,7 +138,14 @@ $(document).ready(function() {
 		});
 	}
 	
-	function userCheckData(username){
+	function userCheckData(){
+		
+		if($("#targetuser").val() == "") return;
+		
+		$("#daycounter").text("x");
+		$("#n").text("n");
+		
+		var username = $("#targetuser").val();
 		makeDateChart([]);
 		ohmage("/mobility/dates/read", { username : username, start_date: asDate(startdate), end_date: asDate(today) }, function(result){
 			datadates = []
@@ -146,10 +153,11 @@ $(document).ready(function() {
 				var mydate = fromDate(result.data[datestring]);
 				if(mydate > startdate) datadates.push(mydate)
 			}
-			$("#daycounter").text(datadates.length)
+			$("#daycounter").text(datadates.length);
+			$("#n").text(n);
 			if(datadates.length > 0){
 				$("#targetgroup").addClass("success")
-				$("#downloadbutton,#loaddatabutton").removeClass("disabled").attr("disabled", null)
+				$(".databutton").removeClass("disabled").attr("disabled", null)
 			} else {
 				$("#targetgroup").addClass("error")
 			}
@@ -172,7 +180,9 @@ $(document).ready(function() {
 	function loadData(){
 		// username
 		var username = $("#targetuser").val();
-		var startdate = new Date(today.getFullYear(), today.getMonth(), today.getDate()-n); // create new increased date		
+		var startdate = new Date(today.getFullYear(), today.getMonth(), today.getDate()-n); // create new increased date	
+		$(".databutton").addClass("disabled").attr("disabled", "disabled");
+		
 		ohmage("/mobility/aggregate/read", {duration: 1, username : username, start_date: asDate(startdate), end_date: asDate(today)}, function(result){
 			if(!result.data || result.data.length == 0) return false;
 			var aggregatedata = [];
@@ -190,25 +200,31 @@ $(document).ready(function() {
 			}
 			
 			makeDateChart(aggregatedata);
+		}).complete(function(){
+			$(".databutton").removeClass("disabled").attr("disabled", null);
 		});	
 	}
 	
 	function downloadReport(){
 		var session = jQuery.parseJSON($.cookie("ohmage"));
-		$("#downloadbutton").addClass("disabled").attr("disabled", "disabled");
+		$(".databutton").addClass("disabled").attr("disabled", "disabled");
 		opencpu("dpu.mobility/painreport", {
 			username : enquote($('#targetuser').val()),
 			serverurl : enquote(session.serverurl),
-			token : enquote(session.token)
+			token : enquote(session.token),
+			days : n
 		}, function(response){
 			$("#pdflink").attr("href", opencpuserver + "/R/tmp/" + response.files["report.pdf"] + "/bin");
 			$("#pdflink img").show();
 		}).complete(function(){
-			$("#downloadbutton").removeClass("disabled").attr("disabled", null);
+			$(".databutton").removeClass("disabled").attr("disabled", null);
 		});
 	}
 	
 	function makeDateChart(data){
+		
+		$("#date-chart").empty();
+		$("#move-chart").empty();
 		
 		mobility = crossfilter(data);
 		mobilityAll = mobility.groupAll();
@@ -220,13 +236,12 @@ $(document).ready(function() {
 		
 		mobilityWalkTime = mobilityByDate.group().reduceSum(function(d) { return d.mode == "walk" ? d.duration : 0 });
 		mobilityRunTime = mobilityByDate.group().reduceSum(function(d) { return d.mode == "run" ? d.duration : 0 });
-		mobilityDriveTime = mobilityByDate.group().reduceSum(function(d) { return d.mode == "drive" ? d.duration : 0 });
-		
+		mobilityDriveTime = mobilityByDate.group().reduceSum(function(d) { return d.mode == "drive" ? d.duration : 0 });	
 		
 		mobilityModeGroup = mobilityByMode.group().reduceSum(function(d) { return d.mode == "still" ? 0 : d.duration });		
-		
+
 		dc.barChart("#date-chart")
-			.width(740) // (optional) define chart width, :default = 200
+			.width(980) // (optional) define chart width, :default = 200
 			.height(200) // (optional) define chart height, :default = 200
 			.margins({top: 10, right: 50, bottom: 30, left: 40})
 			.dimension(mobilityByDate) // set dimension
@@ -238,20 +253,23 @@ $(document).ready(function() {
 			.centerBar(false)
 			.elasticX(false)
 			.xAxisPadding(1)
+			.renderHorizontalGridLines(true)
+			.renderVerticalGridLines(false)			
 			.x(d3.time.scale().domain([startdate, today]))
 			.round(d3.time.day.round)
 			.xUnits(d3.time.days)
 	    
 		dc.pieChart("#move-chart")
-		    .width(200) 
-		    .height(200) 
+		    .width(180) 
+		    .height(180) 
 		    .colors(["#000000", '#fb8072', '#b3de69', '#80b1d3'])
 		    //.colorAccessor(function(d, i){return d.value;})
-		    .radius(70) // define pie radius
+		    .radius(80) // define pie radius
 		    .innerRadius(10)
 		    .dimension(mobilityByMode) // set dimension
 		    .group(mobilityModeGroup) // set group
-		    .renderLabel(true)  
+		    .renderLabel(true) 
+		    .title(function(d) { return d.data.key + ": " + d.data.value + " minutes" })
 	    
 	    dc.renderAll();
 		dc.redrawAll();
@@ -273,14 +291,18 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	$("#targetuser").change(function(){
-		userCheckData($(this).val())
+	$("#targetuser,#dayselector").change(function(){
+		n = $("#dayselector").val();
+		startdate = new Date(today.getFullYear(), today.getMonth(), today.getDate()-n);		
+		userCheckData();
 	}).click(function(){
+		makeDateChart([]);
 		$("#targetgroup").removeClass("success");
 		$("#targetgroup").removeClass("error");
-		$("#downloadbutton").addClass("disabled").attr("disabled", "disabled");
+		$(".databutton").addClass("disabled").attr("disabled", "disabled");
 		$("#pdflink").attr("href", "");
-		$("#pdflink img").hide();		
+		$("#pdflink img").hide();	
+		
 	})
 	
 	$("#downloadbutton").click(function(e){
@@ -306,8 +328,6 @@ $(document).ready(function() {
 		logout();
 	})
 	
-	//dc.barChart("#date-chart").width(1000).height(250)
-		
 	//Onload Initiator	
 	if($.cookie("ohmage")){
 		postLogin()
