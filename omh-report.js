@@ -267,7 +267,7 @@ $(document).ready(function() {
 			.renderVerticalGridLines(false)			
 			.x(d3.time.scale().domain([startdate, today]))
 			.round(d3.time.day.round)
-			//.xUnits(d3.time.days)
+			.xUnits(d3.time.days)
 			.xAxis().tickFormat(d3.time.format("%b %d")).ticks(7)
 	    
 		dc.pieChart("#move-chart")
