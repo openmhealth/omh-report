@@ -24,13 +24,14 @@
 <script src="dc/crossfilter.js"></script>
 <script src="dc/d3.v2.js"></script>
 <script src="dc/dc.js"></script>
-<link href="dc/dc.css" rel="stylesheet">
 
+<link href="dc/dc.css" rel="stylesheet">
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="omh-report.css" rel="stylesheet">
 
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="omh-report.js"></script>
-<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="omh-report.css" rel="stylesheet">
+
 
 </head>
 
@@ -63,6 +64,7 @@
 					<div class="control-group span3">
 						<div class="controls">
 							<select id="serverurl" name="serverurl">
+								<option value="/app">/app (current host)</option>
 								<option>https://test.ohmage.org/app</option>
 								<option>https://dev.ohmage.org/app</option>
 								<option>https://pilots.omh.io/app</option>

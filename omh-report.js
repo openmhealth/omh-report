@@ -330,8 +330,12 @@ $(document).ready(function() {
 	
 	//Onload Initiator	
 	if($.cookie("ohmage")){
-		postLogin()
-	}
+		postLogin();
+	} 
 	
+	if(window.location.hostname == "openmhealth.github.com" || window.location.hostname == "openmhealth.org" || window.location.hostname == "www.openmhealth.org"){
+		//in this case the current server is NOT an ohmage server and we change the default to the second option
+		$("#serverurl").val($("#serverurl option")[1].text);
+	}
 
 });
