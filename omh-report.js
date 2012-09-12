@@ -210,10 +210,17 @@ $(document).ready(function() {
 	
 	function downloadReport(){
 		var session = jQuery.parseJSON($.cookie("ohmage"));
+		var fullurl = session.serverurl;
+		
+		//in case the ohmage server is the current host, we need to get the full url from the window.location
+		if(fullurl == "/app"){
+			fullurl = window.location.protocol + "//" + window.location.host + fullurl;
+		}
+		
 		$(".databutton").addClass("disabled").attr("disabled", "disabled");
 		opencpu("dpu.mobility/painreport", {
 			username : enquote($('#targetuser').val()),
-			serverurl : enquote(session.serverurl),
+			serverurl : enquote(fullurl),
 			token : enquote(session.token),
 			days : n
 		}, function(response){
