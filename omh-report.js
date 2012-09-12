@@ -6,7 +6,10 @@ $(document).ready(function() {
 	var n = 14;
 	var today = new Date();
 	var startdate = new Date(today.getFullYear(), today.getMonth(), today.getDate()-n);
-	var opencpuserver = "http://dev1.opencpu.org"
+	
+	//we match the protocol (http vs https) with the current server. IE requires that for CORS.
+	//public.opencpu.org should support either.
+	var opencpuserver = window.location.protocol + "//public.opencpu.org"
 	
 	//crossfilter data
 	var mobility;
