@@ -248,7 +248,7 @@ $(document).ready(function() {
 		mobilityRunTime = mobilityByDate.group().reduceSum(function(d) { return d.mode == "run" ? d.duration : 0 });
 		mobilityDriveTime = mobilityByDate.group().reduceSum(function(d) { return d.mode == "drive" ? d.duration : 0 });	
 		
-		mobilityModeGroup = mobilityByMode.group().reduceSum(function(d) { return (d.mode == "walk" | d.mode=="run" | d.mode == "drive") ? d.duration : 0 });		
+		mobilityModeGroup = mobilityByMode.group().reduceSum(function(d) { return (d.mode == "still" || d.mode=="error") ? 0 : d.duration });		
 
 		dc.barChart("#date-chart")
 			.width(980) // (optional) define chart width, :default = 200
