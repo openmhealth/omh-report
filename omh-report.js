@@ -192,7 +192,9 @@ $(document).ready(function() {
 			for(var i = 0; i < result.data.length; i++){
 				var modes = result.data[i].data;
 				for(var j = 0; j < modes.length; j++){
-					//if(modes[j].mode == "still") continue;
+					//not including 'still' and 'error' automatically assigns the right colors.					
+					if(modes[j].mode == "still") continue;
+					if(modes[j].mode == "error") continue;
 					aggregatedata.push({
 						date : fromDate(result.data[i].timestamp),
 						mode : modes[j].mode,
@@ -273,7 +275,7 @@ $(document).ready(function() {
 		dc.pieChart("#move-chart")
 		    .width(180) 
 		    .height(180) 
-		    .colors(["#000000", '#fb8072', '#b3de69', '#80b1d3'])
+		    .colors(['#fb8072', '#b3de69', '#80b1d3'])
 		    //.colorAccessor(function(d, i){return d.value;})
 		    .radius(80) // define pie radius
 		    .innerRadius(10)
