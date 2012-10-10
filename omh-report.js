@@ -192,9 +192,8 @@ $(document).ready(function() {
 			for(var i = 0; i < result.data.length; i++){
 				var modes = result.data[i].data;
 				for(var j = 0; j < modes.length; j++){
-					//not including 'still' and 'error' automatically assigns the right colors.					
-					if(modes[j].mode == "still") continue;
-					if(modes[j].mode == "error") continue;
+					//not including modes like 'still' and 'error'					
+					if(modes[j].mode != "walk" && modes[j].mode != "drive" && modes[j].mode != "run") continue;
 					aggregatedata.push({
 						date : fromDate(result.data[i].timestamp),
 						mode : modes[j].mode,
