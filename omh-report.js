@@ -275,7 +275,8 @@ $(document).ready(function() {
 		dc.pieChart("#move-chart")
 		    .width(180) 
 		    .height(180) 
-		    .colors(['#fb8072', '#b3de69', '#80b1d3'])
+		    //colors: [walk, drive, run]
+		    .colors(['#80b1d3', '#fb8072', '#b3de69'])
 		    //.colorAccessor(function(d, i){return d.value;})
 		    .radius(80) // define pie radius
 		    .innerRadius(10)
