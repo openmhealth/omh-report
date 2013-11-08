@@ -209,7 +209,7 @@ $(document).ready(function() {
 			token : enquote(session.token),
 			days : n
 		}, function(res){
-			$("#pdflink").attr("href", res.getFile("report.pdf");
+			$("#pdflink").attr("href", res.getFile("report.pdf"));
 			$("#pdflink img").show();
 		}).complete(function(){
 			$(".databutton").removeClass("disabled").attr("disabled", null);
