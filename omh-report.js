@@ -1,6 +1,8 @@
 //ohmage("/user/read")
 
 $(document).ready(function() {
+
+	opencpu.seturl("//public.opencpu.org/ocpu/library/dpu.mobility/R")
 	
 	//globalz
 	var n = 14;
@@ -67,24 +69,6 @@ $(document).ready(function() {
 		}).error(function(){alert("Ohmage returned an undefined error.")});		
 		
 		return(myrequest)
-	}
-	
-	//opencpu("stats/rnorm", {n:10})
-	window.opencpu = function opencpu(path, data, datafun){
-		var myrequest = $.ajax({
-			type: "POST",
-			timeout : 120 * 1000, //2min
-			url : opencpuserver + "/R/pub/" + path + "/save",
-			data: data
-		}).done(function(rsptxt){
-			if(datafun) {
-				var response = jQuery.parseJSON(rsptxt);
-				datafun(response);
-			}
-		}).error(function(xhr){
-			alert(xhr.responseText)
-		});		
-		return(myrequest);		
 	}
 	
 	function processError(errors){
@@ -219,13 +203,13 @@ $(document).ready(function() {
 		}
 		
 		$(".databutton").addClass("disabled").attr("disabled", "disabled");
-		opencpu("dpu.mobility/painreport", {
+		opencpu.r_fun_call("painreport", {
 			username : enquote($('#targetuser').val()),
 			serverurl : enquote(fullurl),
 			token : enquote(session.token),
 			days : n
-		}, function(response){
-			$("#pdflink").attr("href", opencpuserver + "/R/tmp/" + response.files["report.pdf"] + "/bin");
+		}, function(res){
+			$("#pdflink").attr("href", res.getFile("report.pdf");
 			$("#pdflink img").show();
 		}).complete(function(){
 			$(".databutton").removeClass("disabled").attr("disabled", null);
