@@ -204,9 +204,9 @@ $(document).ready(function() {
 		
 		$(".databutton").addClass("disabled").attr("disabled", "disabled");
 		opencpu.r_fun_call("painreport", {
-			username : enquote($('#targetuser').val()),
-			serverurl : enquote(fullurl),
-			token : enquote(session.token),
+			username : $('#targetuser').val(),
+			serverurl : fullurl,
+			token : session.token,
 			days : n
 		}, function(res){
 			$("#pdflink").attr("href", res.getFile("report.pdf"));
